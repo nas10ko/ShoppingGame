@@ -350,6 +350,7 @@
 -r:"Library/Bee/artifacts/200b0aE.dag/UnityEngine.UI.ref.dll"
 "Assets/P1Look.cs"
 "Assets/P1Movement.cs"
+"Assets/P2Movement.cs"
 -langversion:9.0
 
 /deterministic

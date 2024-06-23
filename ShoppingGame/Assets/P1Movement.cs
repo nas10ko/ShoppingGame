@@ -33,8 +33,8 @@ public class P1Movement : MonoBehaviour
     }
 
     private void InputManager() {
-        horizontalInput = Input.GetAxis("Horizontal");
-        verticalInput = Input.GetAxis("Vertical");
+        horizontalInput = Input.GetAxis("Horizontal1");
+        verticalInput = Input.GetAxis("Vertical1");
     }
 
     private void MovePlayer() {
