@@ -7,6 +7,8 @@ public class P1Movement : MonoBehaviour
     public float moveSpeed;
     public Transform orientation;
 
+    public float GroundDrag;
+
     float horizontalInput;
     float verticalInput;
 
@@ -22,6 +24,8 @@ public class P1Movement : MonoBehaviour
     // Update is called once per frame
     void Update() {
         InputManager();
+        SpeedControl();
+        rb.drag = GroundDrag;
     }
 
     void FixedUpdate() {
@@ -36,5 +40,14 @@ public class P1Movement : MonoBehaviour
     private void MovePlayer() {
         moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
         rb.AddForce(moveDirection.normalized * moveSpeed * 10f, ForceMode.Force);
+    }
+
+    private void SpeedControl() {
+        Vector3 flatVelocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
+        if(flatVelocity.magnitude > moveSpeed) {
+            // if you are moving faster than your movement speed
+            Vector3 limitedVelocity = flatVelocity.normalized * moveSpeed; // calculate what the max velocity should be
+            rb.velocity = new Vector3(limitedVelocity.x, rb.velocity.y, limitedVelocity.z); // apply to rigidbody
+        }
     }
 }
